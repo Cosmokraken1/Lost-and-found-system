@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost and Found System</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff9800;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #ff9800;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        .hero button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .hero button:hover {
+            background: #222;
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        section h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Forms */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        form input, form textarea, form select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            font-size: 1rem;
+        }
+        form button {
+            margin-top: 15px;
+            padding: 10px;
+            background: #ff9800;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        form button:hover {
+            background: #e68900;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Lost & Found</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#report-lost">Report Lost Item</a></li>
+                <li><a href="#report-found">Report Found Item</a></li>
+                <li><a href="#search">Search</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero">
+            <h1>Welcome to the Lost & Found System</h1>
+            <p>Report, search, and find lost or found items with ease.</p>
+            <button onclick="scrollToSection('report-lost')">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Report Lost Item -->
+    <section id="report-lost">
+        <h2>Report Lost Item</h2>
+        <form onsubmit="showAlert(event, 'Lost item reported successfully!')">
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="item-name" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="date-lost">Date Lost:</label>
+            <input type="date" id="date-lost" name="date-lost" required>
+
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="documents">Documents</option>
+                <option value="others">Others</option>
+            </select>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="image">Attach Image:</label>
+            <input type="file" id="image" name="image">
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Report Found Item -->
+    <section id="report-found">
+        <h2>Report Found Item</h2>
+        <form onsubmit="showAlert(event, 'Found item reported successfully!')">
+            <label for="found-item-name">Item Name:</label>
+            <input type="text" id="found-item-name" name="found-item-name" required>
+
+            <label for="found-description">Description:</label>
+            <textarea id="found-description" name="found-description" rows="4" required></textarea>
+
+            <label for="date-found">Date Found:</label>
+            <input type="date" id="date-found" name="date-found" required>
+
+            <label for="found-category">Category:</label>
+            <select id="found-category" name="found-category">
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="documents">Documents</option>
+                <option value="others">Others</option>
+            </select>
+
+            <label for="found-location">Location:</label>
+            <input type="text" id="found-location" name="found-location" required>
+
+            <label for="found-image">Attach Image:</label>
+            <input type="file" id="found-image" name="found-image">
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search">
+        <h2>Search for Lost/Found Items</h2>
+        <form onsubmit="showAlert(event, 'Search completed!')">
+            <label for="search-keyword">Keyword:</label>
+            <input type="text" id="search-keyword" name="search-keyword">
+
+            <label for="search-category">Category:</label>
+            <select id="search-category" name="search-category">
+                <option value="all">All</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="documents">Documents</option>
+                <option value="others">Others</option>
+            </select>
+
+            <label for="search-location">Location:</label>
+            <input type="text" id="search-location" name="search-location">
+
+            <label for="search-date">Date:</label>
+            <input type="date" id="search-date" name="search-date">
+
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Lost & Found System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showAlert(event, message) {
+            event.preventDefault();
+            alert(message);
+        }
+    </script>
+</body>
+</html>
